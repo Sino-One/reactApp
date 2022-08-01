@@ -1,26 +1,12 @@
-import './App.css';
-import Item from "./Item";
-import {useState} from "react";
+import Modal from "./Components/Modal/Modal";
 
 function App() {
 
-    const [monState, setMonState] = useState(2);
-
-    const click = () => {
-        setMonState(monState*2);
-    }
-
-  return (
-    <div className="App">
-      <h1>Hello : {monState}</h1>
-        <br/>
-        <br/>
-        <button onClick={click}>Click Me</button>
-        <br/>
-        <Item number={monState}/>
-        <Item number={monState*2}/>
-    </div>
-  );
+    return (
+        <>
+        <Modal/>
+        </>
+    );
 }
 
 export default App;
