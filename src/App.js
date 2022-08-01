@@ -4,7 +4,7 @@ import {useState} from "react";
 
 function App() {
 
-    const [monState, setMonState] = useState(10);
+    const [monState, setMonState] = useState(2);
 
     const click = () => {
         setMonState(monState*2);
@@ -16,6 +16,9 @@ function App() {
         <br/>
         <br/>
         <button onClick={click}>Click Me</button>
+        <br/>
+        <Item number={monState}/>
+        <Item number={monState*2}/>
     </div>
   );
 }

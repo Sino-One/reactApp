@@ -1,5 +1,5 @@
-function Item() {
-    return "Hello World from Item component";
+function Item(props) {
+    return <h1>{props.number}</h1>
 }
 
 export default Item;
