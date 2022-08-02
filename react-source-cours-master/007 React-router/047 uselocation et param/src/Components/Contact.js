@@ -4,10 +4,10 @@ import {useLocation} from 'react-router-dom'
 export default function Contact() {
 
     const location = useLocation();
-    console.log(location.state.txt);
+    console.log(location);
 
 
     return (
-        <h1>{location.state.txt}</h1>
+        <h1>{location}</h1>
     )
 }
