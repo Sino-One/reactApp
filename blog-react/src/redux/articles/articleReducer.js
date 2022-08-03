@@ -10,6 +10,14 @@ function articleReducer(state = INITIAL_STATE, action) {
                 articles: action.payload
             }
         }
+        case "ADD_ARTICLE": {
+            const newArr = [...state.articles];
+            newArr.unshift(action.payload);
+            return {
+                ...state,
+                articles: newArr
+            }
+        }
     }
     return state;
 }
