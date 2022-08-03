@@ -1,36 +1,32 @@
-import {useState} from 'react'
+import {useState, useRef} from 'react'
 import {useDispatch} from 'react-redux'
 import "./Form.css"
 
 export default function Form() {
 
-    const [article, setArticle] = useState({
-        title: "",
-        body: ""
-    })
-
     const dispatch = useDispatch();
 
     const handleForm = e => {
        e.preventDefault();
+
+       const newArticle = {
+           title: inputRefs.current[0].value,
+           body: inputRefs.current[1].value
+       }
+
        dispatch(({
            type: "ADD_ARTICLE",
-           payload: article
+           payload: newArticle
        }));
-       setArticle({
-           title: "",
-           body: ""
-       })
+
+       e.target.reset();
     }
-    
-    const handleInputs = e => {
-        if (e.target.classList.contains('inp-title')) {
-            const newObjState = {...article, title: e.target.value};
-            setArticle(newObjState);
-        }
-        if (e.target.classList.contains('inp-body')) {
-            const newObjState = {...article, body: e.target.value};
-            setArticle(newObjState);
+
+    const inputRefs = useRef([]);
+
+    const addRefs = el => {
+        if (el && !inputRefs.current.includes(el)) {
+            inputRefs.current.push(el);
         }
     }
 
@@ -44,8 +40,7 @@ export default function Form() {
                     className="container-form-input inp-title"
                     type="text" id="title"
                     placeholder="Entrez votre nom"
-                    value={article.title}
-                    onInput={handleInputs}
+                    ref={addRefs}
                 />
 
                 <label htmlFor="article">Votre Article</label>
@@ -54,8 +49,7 @@ export default function Form() {
                     type="text"
                     id="article" 
                     placeholder="Votre article"
-                    value={article.body}
-                    onChange={handleInputs}
+                    ref={addRefs}
                 />
 
                 <button className="container-form-button">Envoyer l'article</button>
